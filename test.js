@@ -7,4 +7,6 @@ setTimeout(() => {
     console.log("🎉 INSIDE grist.ready");
     grist.setHeight(300);
   });
-}, 0);
+}, 100);
+
+console.log("laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
