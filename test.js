@@ -1,3 +1,6 @@
+console.log("loadeddddddddddddddddddddddddddddddddddddddddddddddddd")
+
+
 grist.ready(() => {
-    console.log('test');
+    console.log('testtttttttttttttttttttttttttttttttttttttttttttttttttttt');
 });
