@@ -1,6 +1,13 @@
 console.log("loadeddddddddddddddddddddddddddddddddddddddddddddddddd")
 
 
-grist.ready(() => {
-    console.log('testtttttttttttttttttttttttttttttttttttttttttttttttttttt');
-});
+if (typeof grist !== undefined){
+
+    grist.ready(() => {
+        console.log('testtttttttttttttttttttttttttttttttttttttttttttttttttttt');
+        grist.setTitle("readyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
+    });
+}
+else {
+    console.log("nope sorry bruvs")
+}
