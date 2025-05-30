@@ -2,7 +2,7 @@ let pyodide;
 
 async function py_Start(records){
   py = await loadPyodide();
-  await pyodide.loadPackage(['pandas'])
+  await py.loadPackage(['pandas'])
 
   let response = await fetch("https://candandilovan.github.io/unique_Value_Collector/unique_Collector.py")
   console.log(response.ok)
