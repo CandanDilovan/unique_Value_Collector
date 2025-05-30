@@ -5,7 +5,7 @@ console.log("grist.ready exists:", typeof grist.ready);
 
 async function start(){
     grist.ready();
-    // let tables = await grist.getTableNames();
+    let tables = await grist.docApi.listTables();
     console.log("docApi methods:", Object.keys(grist.docApi));
     console.log("testtttttttttttttttttttttttttt");
 }
