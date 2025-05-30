@@ -18,4 +18,4 @@ async function ready(fn) {
   }
 }
 
-await ready(start)
+ready(start)
