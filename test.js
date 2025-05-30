@@ -1,11 +1,25 @@
+let pyodide;
+
+async function py_Start(records){
+  py = await loadPyodide();
+  await py.loadPackage({pandas});
+
+  let response = await fetch("https://candandilovan.github.io/unique_Value_Collector/unique_Collector.py")
+  if (!response.ok())
+      throw new TypeError(`Server error: ${errorText}`);
+  py_code = await response.text();
+  py.globals.set("records", records);
+  let test = await py.runPythonAsync(`
+    from unique_Collector import test
+    test(records)`);
+  console.log(test)
+}
 
 async function start(){
     grist.ready({
       requiredAccess: 'full',
     });
-    // let tables = await grist.docApi.listTables();
     console.log("docApi methods:", Object.keys(grist.docApi));
-    // console.log(tables)
     grist.onRecords((records) => {
       console.log(records)
     })
