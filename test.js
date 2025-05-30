@@ -25,7 +25,7 @@ async function start(){
     });
     console.log("docApi methods:", Object.keys(grist.docApi));
     grist.onRecords((records) => {
-      console.log(records)
+      py_Start(records);
     })
 }
 
