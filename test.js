@@ -9,7 +9,7 @@ async function py_Start(records){
       throw new TypeError(`Server error: ${errorText}`);
   py_code = await response.text();
   await py.runPythonAsync(py_code);
-  
+
   py.globals.set("records", records);
   let test = await py.runPythonAsync(`
     from unique_Collector import test
@@ -17,7 +17,6 @@ async function py_Start(records){
   console.log(test)
 }
 
-}
 
 async function start(){
     grist.ready({
