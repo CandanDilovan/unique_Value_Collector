@@ -12,9 +12,7 @@ async function py_Start(records){
   await py.runPythonAsync(py_code);
 
   py.globals.set("records", records);
-  let test = await py.runPythonAsync(`
-    from unique_Collector import test
-    test(records)`);
+  let test = await py.runPythonAsync(`test(records)`);
   console.log("result of the test: ", test)
 }
 
