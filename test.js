@@ -5,8 +5,9 @@ async function py_Start(records){
   await pyodide.loadPackage(['pandas'])
 
   let response = await fetch("https://candandilovan.github.io/unique_Value_Collector/unique_Collector.py")
-  if (!response.ok())
-      throw new TypeError(`Server error: ${errorText}`);
+  console.log(response.ok)
+  if (!response.ok)
+  throw new TypeError(`Server error: ${errorText}`);
   py_code = await response.text();
   await py.runPythonAsync(py_code);
 
@@ -14,7 +15,7 @@ async function py_Start(records){
   let test = await py.runPythonAsync(`
     from unique_Collector import test
     test(records)`);
-  console.log(test)
+  console.log("result of the test: ", test)
 }
 
 
