@@ -11,7 +11,7 @@ async function py_Start(records){
   py_code = await response.text();
   await py.runPythonAsync(py_code);
 
-  py.globals.set("records", records);
+  py.globals.set("records", py.toPy(records));
   let test = await py.runPythonAsync(`test(records)`);
   console.log("result of the test: ", test)
 }
@@ -23,7 +23,7 @@ async function start(){
     });
     console.log("docApi methods:", Object.keys(grist.docApi));
     grist.onRecords((records) => {
-      console.log(records)
+      console.log(records);
       py_Start(records);
     })
 }
