@@ -3,18 +3,19 @@ console.log("typeof grist:", typeof grist);
 console.log("grist.ready exists:", typeof grist.ready);
 
 
-function start(){
-    grist.ready()
-    console.log("testtttttttttttttttttttttttttt")
+async function start(){
+    grist.ready();
+    let tables = await grist.docApi.getTabless();
+    console.log("testtttttttttttttttttttttttttt");
 }
 
-function ready(fn) {
+async function ready(fn) {
   if (document.attachEvent ? document.readyState === "complete" :
       document.readyState !== "loading"){
-    fn();
+    await fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
 
-ready(start)
+await ready(start)
