@@ -4,10 +4,10 @@ async function py_Start(records){
   py = await loadPyodide();
   await py.loadPackage(['pandas'])
 
-  let response = await fetch("https://candandilovan.github.io/unique_Value_Collector/unique_Collector.py")
+  let response = await fetch("https://candandilovan.github.io/unique_Value_Collector/main/unique_Collector.py")
   console.log(response.ok)
   if (!response.ok)
-  throw new TypeError(`Server error: ${errorText}`);
+    throw new TypeError(`Server error`);
   py_code = await response.text();
   await py.runPythonAsync(py_code);
 
