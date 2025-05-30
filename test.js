@@ -15,7 +15,7 @@ async function py_Start(records){
   let test = await py.runPythonAsync(`test(records)`);
   console.log("result of the test: ", test)
 
-  await grist.docApi.applyUsersActions([
+  await grist.docApi.applyUserActions([
     ["AddTabble", "UniqueTable", {tableName: "UniqueTable"}],
   ]);
 }
