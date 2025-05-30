@@ -14,12 +14,17 @@ async function py_Start(records){
   py.globals.set("records", py.toPy(records));
   let test = await py.runPythonAsync(`test(records)`);
   console.log("result of the test: ", test)
+
+  await grist.docApi.applyUsersActions([
+    ["AddTabble", "UniqueTable", {tableName: "UniqueTable"}],
+  ]);
 }
 
 
 async function start(){
     grist.ready({
       requiredAccess: 'full',
+
     });
     console.log("docApi methods:", Object.keys(grist.docApi));
     grist.onRecords((records) => {
