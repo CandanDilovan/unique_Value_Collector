@@ -28,7 +28,8 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
   if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text)
   {
     srctable = grist.docApi.fetchTable(src.selectedOptions[0].text); 
-    dsttable = grist.docApi.fetchTable(dst.selectedOptions[0].text); 
+    dsttable = grist.docApi.fetchTable(dst.selectedOptions[0].text);
+    console.log(srctable);
     await py_Start(srctable, dsttable);
   }
 })
