@@ -38,7 +38,7 @@ async function start(){
       op2.value = table;
 
       srcdrop.appendChild(op1);
-      dstdrop.appendChild(op1);
+      dstdrop.appendChild(op2);
     }
 }
 
