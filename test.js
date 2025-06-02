@@ -11,7 +11,8 @@ async function py_Start(src, dst){
   py_code = await response.text();
   await py.runPythonAsync(py_code);
 
-  py.globals.set("src", "dst", py.toPy(src, dst));
+  py.globals.set("src", py.toPy(src));
+  py.globals.set("dst", py.toPy(dst));
   let test = await py.runPythonAsync(`test(src, dst)`);
   console.log("result of the test: ", test)
 
