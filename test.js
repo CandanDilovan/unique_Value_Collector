@@ -22,7 +22,8 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
   src = document.getElementById("sourcetable");
   dst = document.getElementById("desttable");
 
-  console.log(src.textContent)
+  console.log(src.selectedOptions[0].value)
+  console.log(src.selectedOptions[0].text)
   if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text)
     await py_Start(src.selectedOptions[0].value, dst.selectedOptions[0].value);
 })
