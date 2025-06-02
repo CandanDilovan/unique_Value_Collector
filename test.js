@@ -24,7 +24,7 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
 
   console.log(src.textContent)
   if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text)
-    await py_Start(src.value, dst.value);
+    await py_Start(src.selectedOptions[0].value, dst.selectedOptions[0].value);
 })
 
 
