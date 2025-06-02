@@ -35,7 +35,7 @@ async function start(){
       op1.value = table;
       op1.textContent = table;
       op2.value = table;
-      op1.value = table;
+      op2.value = table;
 
       srcdrop.appendChild(op1);
       dstdrop.appendChild(op2);
