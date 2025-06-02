@@ -1,6 +1,6 @@
 import pandas as pd
 
 
-def test(records):
-    table = pd.DataFrame(records)
+def test(src, dst):
+    table = pd.DataFrame(src)
     print(table)

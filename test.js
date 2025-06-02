@@ -17,6 +17,14 @@ async function py_Start(src, dst){
 
 }
 
+document.getElementById("dupe").addEventListener("click", () => {
+  src = document.getElementById("sourcetable").textContent;
+  dst = document.getElementById("desttable").textContent;
+
+  if (src.textContent + "_dupe" === dst.textContent)
+    py_Start(src.value, dst.value)
+})
+
 
 async function start(){
     grist.ready({
