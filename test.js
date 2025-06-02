@@ -18,9 +18,11 @@ async function py_Start(src, dst){
 }
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
+  
   src = document.getElementById("sourcetable").textContent;
   dst = document.getElementById("desttable").textContent;
 
+  console.log(src.textContent)
   if (src.textContent + "_dupe" === dst.textContent)
     await py_Start(src.value, dst.value);
 })
