@@ -17,7 +17,7 @@ async function py_Start(src, dst){
 
 }
 
-document.getElementById("dupe").addEventListener("click", async() => {
+document.getElementById("dupe").addEventListener("click", async(event) => {
   src = document.getElementById("sourcetable").textContent;
   dst = document.getElementById("desttable").textContent;
 
