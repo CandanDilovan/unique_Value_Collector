@@ -11,8 +11,8 @@ async function py_Start(src, dst){
   py_code = await response.text();
   await py.runPythonAsync(py_code);
 
-  py.globals.set("records", py.toPy(records));
-  let test = await py.runPythonAsync(`test(records)`);
+  py.globals.set("records", py.toPy(src, dst));
+  let test = await py.runPythonAsync(`test(src, dst)`);
   console.log("result of the test: ", test)
 
 }
@@ -22,7 +22,7 @@ document.getElementById("dupe").addEventListener("click", () => {
   dst = document.getElementById("desttable").textContent;
 
   if (src.textContent + "_dupe" === dst.textContent)
-    py_Start(src.value, dst.value)
+    py_Start(src.value, dst.value);
 })
 
 
