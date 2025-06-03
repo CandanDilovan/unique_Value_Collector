@@ -23,9 +23,18 @@ async function py_Start(src, dst){
         colData[key].push(record[key]);
       }
     }
+
+
+  const columns = Object.keys(colData); // ['Name', 'Age']
+  const numRows = colData[columns[0]].length;
+
+  const rows = Array.from({ length: numRows }, (_, i) =>
+  columns.map(col => colData[col][i])
+  );
+
   console.log(dst, src, src.textContent)
 
-  let action = ["ReplaceTableData", dst , colData];
+  let action = ["ReplaceTableData", dst , columns, rows];
   // console.log("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", JSON.stringify(action)) 
   await grist.docApi.applyUserActions([action]);
 
