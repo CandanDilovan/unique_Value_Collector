@@ -12,12 +12,12 @@ async function py_Start(src, dst){
   await py.runPythonAsync(py_code);
 
   py.globals.set("src", py.toPy(src));
-  records = await py.runPythonAsync(`result = test(src)`);
+  records = await py.runPythonAsync(`test(src)`);
   console.log(records)
   const records_json = py.runPython(`result.to_json(orient="records")`);
   // const records = JSON.parse(records_json);
 
-  let action = ["ReplaceTableData", dst, {caca: pipi}];
+  let action = ["ReplaceTableData", dst, {colA: ["val1", "val2"], colB: ["val3", "val4"]}];
   await grist.docApi.applyUserActions([action]);
 
 }
