@@ -26,7 +26,7 @@ async function py_Start(src, dst){
 
   console.log(dst, src, src.textContent)
 
-  let action = ["BulkAddRecord", dst, colData];
+  let action = ["BulkAddRecords", dst, colData];
   // console.log("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", JSON.stringify(action)) 
   await grist.docApi.applyUserActions([action]);
 
