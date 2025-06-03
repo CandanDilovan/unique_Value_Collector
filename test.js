@@ -1,6 +1,6 @@
 let pyodide;
 
-async function py_Start(src, dst){
+async function py_Start(src){
   py = await loadPyodide();
   await py.loadPackage(['pandas'])
 
@@ -12,8 +12,7 @@ async function py_Start(src, dst){
   await py.runPythonAsync(py_code);
 
   py.globals.set("src", py.toPy(src));
-  py.globals.set("dst", py.toPy(dst));
-  let test = await py.runPythonAsync(`test(src, dst)`);
+  let test = await py.runPythonAsync(`test(src)`);
   console.log("result of the test: ", test)
 
 }
