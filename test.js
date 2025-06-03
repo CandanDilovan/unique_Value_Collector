@@ -22,7 +22,7 @@ async function py_Start(src, dst){
 
   console.log(records[0])
   console.log(typeof grist.docApi.addRecords);
-  await grist.docApi.addRecords({tableId: dst, records: records[0]});
+  await grist.docApi.applyUserActions([["AddRecord", dst, null, records[0]]]);
 }
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
