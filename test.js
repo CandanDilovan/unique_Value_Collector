@@ -27,7 +27,7 @@ async function py_Start(src, dst){
     }
   console.log(colData)
 
-  let action = ["AddRecord", dst.textContent , colData];
+  let action = ["AddRecord", dst.textContent , records];
   await grist.docApi.applyUserActions([action]);
 
 }
