@@ -23,7 +23,7 @@ async function py_Start(src, dst){
         colData[key].push(record[key]);
       }
     }
-  console.log(dst, dst.textContent)
+  console.log(dst, dst.textContent, src, src.textContent)
 
   let action = ["ReplaceTableData", dst.value , colData];
   // console.log("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", JSON.stringify(action)) 
