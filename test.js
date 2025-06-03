@@ -27,7 +27,7 @@ async function py_Start(src, dst){
     }
   console.log(colData)
 
-  let action = ["BulkAddRecords", dst.textContent , colData];
+  let action = ["ReplaceTableData", dst.textContent , colData];
   await grist.docApi.applyUserActions([action]);
 
 }
