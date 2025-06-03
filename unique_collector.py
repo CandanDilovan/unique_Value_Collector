@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def test(src):
-    table = pd.read_csv(src)
+    table = pd.DataFrame(src)
     for x in range(len(table.columns)):
         loc = table.loc[:, table.columns[x]]
         unique_lst = []
