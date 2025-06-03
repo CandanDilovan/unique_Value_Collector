@@ -16,20 +16,10 @@ async function py_Start(src, dst){
   const records_json = py.runPython(`result.to_json(orient="records")`);
   const records = JSON.parse(records_json);
 
-  const colData = {};
-  for (const record of records) {
-    for (const key in record) {
-      if (!colData[key]) colData[key] = [];
-        colData[key].push(record[key]);
-      }
-    }
-
   console.log(dst, src, src.textContent)
 
-  let action = ["BulkAddRecords", dst, colData];
-  // console.log("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", JSON.stringify(action)) 
+  let action = ["AddRecord", dst, records[0]];
   await grist.docApi.applyUserActions([action]);
-
 }
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
