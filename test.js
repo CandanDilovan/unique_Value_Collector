@@ -40,7 +40,7 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
   {
     srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
     dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
-    await py_Start(srctable, dsttable);
+    await py_Start(srctable, dst);
   }
 })
 
