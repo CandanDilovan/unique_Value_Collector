@@ -17,7 +17,17 @@ async function py_Start(src, dst){
   console.log(records_json)
   const records = JSON.parse(records_json);
   console.log(records)
-  let action = ["ReplaceTableData", dst, records_json];
+
+  const colData = {};
+  for (const record of records) {
+    for (const key in record) {
+      if (!colData[key]) colData[key] = [];
+        colData[key].push(record[key]);
+      }
+    }
+  console.log(colData)
+
+  let action = ["ReplaceTableData", dst, colData];
   await grist.docApi.applyUserActions([action]);
 
 }
