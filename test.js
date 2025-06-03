@@ -13,12 +13,12 @@ async function py_Start(src, dst){
 
   py.globals.set("src", py.toPy(src));
   await py.runPythonAsync(`result = test(src)`);
-    const records = py.runPython(`
+  const records = py.runPython(`
     import json
     json.loads(result.to_json(orient="records"))
   `).toJs();
 
-  let action = ["BulkAddRecord", dst, test];
+  let action = ["BulkAddRecord", dst, records];
   await grist.docApi.applyUserActions([action]);
 
 }
