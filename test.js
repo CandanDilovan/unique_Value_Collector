@@ -28,7 +28,7 @@ async function py_Start(src, dst){
   console.log(colData)
 
   let action = ["ReplaceTableData", dst.textContent , colData];
-  console.log(JSON.stringify(action)) 
+  console.log(JSON.stringify("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", action)) 
   await grist.docApi.applyUserActions([action]);
 
 }
