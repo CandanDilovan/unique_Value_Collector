@@ -16,25 +16,9 @@ async function py_Start(src, dst){
   const records_json = py.runPython(`result.to_json(orient="records")`);
   const records = JSON.parse(records_json);
 
-  const colData = {};
-  for (const record of records) {
-    for (const key in record) {
-      if (!colData[key]) colData[key] = [];
-        colData[key].push(record[key]);
-      }
-    }
+  console.log(records)
 
-
-  const columns = Object.keys(colData); // ['Name', 'Age']
-  const numRows = colData[columns[0]].length;
-
-  const rows = Array.from({ length: numRows }, (_, i) =>
-  columns.map(col => colData[col][i])
-  );
-
-  console.log(dst, src, src.textContent)
-
-  let action = ["ReplaceTableData", dst , columns, colData];
+  let action = ["AddRecord", dst , records];
   // console.log("ACTIOOOOOOOOOOOOOONNNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS", JSON.stringify(action)) 
   await grist.docApi.applyUserActions([action]);
 
