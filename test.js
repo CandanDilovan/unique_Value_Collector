@@ -14,7 +14,7 @@ async function py_Start(src, dst){
   py.globals.set("src", py.toPy(src));
   let test = await py.runPythonAsync(`test(src)`);
   console.log("result of the test: ", test)
-  grist.insertRecords(dst, test)
+  grist.docApi.addRecords(dst, test)
 
 }
 
