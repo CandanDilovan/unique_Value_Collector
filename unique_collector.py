@@ -5,9 +5,9 @@ def test(src):
     table = pd.DataFrame(src)
     for x in range(len(table.columns)):
         unique_lst = set()
-        for y in range(table.index):
-            if table.at[y, x] in unique_lst:
-                table.at[y, x] = None
+        for y in range(len(table.index)):
+            if table.at[table.index[y], table.columns[x]] in unique_lst:
+                table.at[table.index[y], table.columns[x]] = None
             else:
-                unique_lst.add(table.at[y, x])
+                unique_lst.add(table.at[table.index[y], table.columns[x]])
     return table
