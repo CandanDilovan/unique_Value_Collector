@@ -22,7 +22,7 @@ async function py_Start(src, dst){
 
   console.log(records[0])
   console.log(typeof grist.docApi.addRecords);
-  for (x = 0; x < len(records); x++)
+  for (x = 0; x < records.length; x++)
     await grist.docApi.applyUserActions([["BulkAddRecord", dst, null, records[x]]]);
 }
 
