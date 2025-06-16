@@ -74,3 +74,11 @@ async function ready(fn) {
 }
 
 ready(start)
+
+//to do :
+//expliquer le fonctionnement dans le readme
+//mieux parser les colones pour ne pas prendre en compte les réferences déjà existante
+//empêcher l'envoie de table qui ne sont pas des dupliquer de la table source
+//barre de chargement
+//optimisation/augmentation de la vitesse d'ajout des lignes dans la table
+//
