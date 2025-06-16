@@ -6,8 +6,8 @@ def test(src):
     table = pd.DataFrame(src)
     for col in table.columns:
         for drop in col_to_drop:
-            if col.find(drop):
-                table = table.drop(col)
+            if not col.find(drop):
+                table = table.drop(columns=col)
     # table = table.drop(columns=[col for col in col_to_drop if col in table.columns])
 
     for x in range(len(table.columns)):
