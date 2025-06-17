@@ -1,7 +1,8 @@
 import pandas as pd
 
 
-def test(src):
+def test(src, dstcol):
+    print(dstcol)
     table = pd.DataFrame(src)
     unique_lst = set()
     for y in range(len(table.index)):

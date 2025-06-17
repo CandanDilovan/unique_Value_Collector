@@ -14,7 +14,8 @@ async function py_Start(src, dst, dstcol){
   await py.runPythonAsync(py_code);
 
   py.globals.set("src", py.toPy(src));
-  await py.runPythonAsync(`result = test(src)`);
+  py.globals.set("dstcol", py.toPy(dstcol));
+  await py.runPythonAsync(`result = test(src, dstcol)`);
   const records_json = py.runPython(`result.to_json(orient="records")`);
   const records = JSON.parse(records_json);
 
