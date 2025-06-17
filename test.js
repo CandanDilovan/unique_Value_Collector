@@ -28,16 +28,41 @@ async function py_Start(src, dst){
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
   
-  src = document.getElementById("sourcetable");
-  dst = document.getElementById("desttable");
+  let src = document.getElementById("sourcetable");
+  let dst = document.getElementById("desttable");
+
 
   if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text)
   {
-    srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
-    dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
+    let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
+    let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
     await py_Start(srctable, dst.selectedOptions[0].text);
   }
 })
+
+
+
+
+document.getElementById("sourcetable").addEventListener("change", col_Selector)
+document.getElementById("desttable").addEventListener("change", col_Selector)
+
+
+async function col_Selector(event) 
+{
+  let table = await grist.docApi.fetchTableMeta(event.target.value);
+
+  let srccol = document.getElementById(event.target.id);
+  srccol.innerHTML = ''
+
+  for (const col of table.columns)
+  {
+    const op = document.createElement("option");
+    op.value = col;
+    op.textContent = col;
+    srccol.appendChild(op);
+  }
+}
+
 
 
 async function start(){
@@ -49,6 +74,8 @@ async function start(){
 
     let srcdrop = document.getElementById("sourcetable");
     let dstdrop = document.getElementById("desttable")
+    let srccol = document.getElementById("sourcecolumn");
+    let dstcol = document.getElementById("dstcolumn");
 
     for (const table of tables){
       const op1 = document.createElement("option");

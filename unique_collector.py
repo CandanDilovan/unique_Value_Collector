@@ -8,8 +8,6 @@ def test(src):
         for drop in col_to_drop:
             if not col.find(drop):
                 table = table.drop(columns=col)
-    # table = table.drop(columns=[col for col in col_to_drop if col in table.columns])
-
     for x in range(len(table.columns)):
         unique_lst = set()
         for y in range(len(table.index)):
