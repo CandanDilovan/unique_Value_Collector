@@ -50,7 +50,7 @@ async function col_Selector(event)
   console.log(table)
 
   let srccol = null;
-  if (event.target.id === sourcetable)
+  if (event.target.id === "sourcetable")
     srccol = document.getElementById("sourcecolumn");
   else
     srccol = document.getElementById("dstcolumn");
