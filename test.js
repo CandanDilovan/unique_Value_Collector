@@ -23,14 +23,16 @@ async function py_Start(src, dst, dstcol){
     await grist.docApi.applyUserActions([["AddRecord", dst, null, {[dstcol]: records[x]}]]);
 }
 
+
+document.getElementById("sourcetable").addEventListener("change", col_Selector);
+document.getElementById("desttable").addEventListener("change", col_Selector);
 document.getElementById("dupe").addEventListener("click", async(event) => {
   
   let src = document.getElementById("sourcecolumn");
-  let dst = document.getElementById("desttable")
+  let dst = document.getElementById("desttable");
   let dstcol = document.getElementById("dstcolumn");
 
-
-
+  console.log(dstcol)
   if (src.selectedOptions[0].text === dstcol.selectedOptions[0].text)
   {
     let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
@@ -38,10 +40,6 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
   }
 })
-
-document.getElementById("sourcetable").addEventListener("change", col_Selector)
-document.getElementById("desttable").addEventListener("change", col_Selector)
-
 
 async function col_Selector(event) 
 {
@@ -52,8 +50,7 @@ async function col_Selector(event)
     srccol = document.getElementById("sourcecolumn");
   else
     srccol = document.getElementById("dstcolumn");
-  console.log(srccol)
-  srccol.innerHTML = ''
+    srccol.innerHTML = '';
   
   for (const col of Object.keys(table))
   {
