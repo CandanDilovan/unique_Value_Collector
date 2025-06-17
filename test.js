@@ -40,16 +40,14 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
   }
 })
 
-
-
-
 document.getElementById("sourcetable").addEventListener("change", col_Selector)
 document.getElementById("desttable").addEventListener("change", col_Selector)
 
 
 async function col_Selector(event) 
 {
-  let table = await grist.docApi.fetchTableMeta(event.target.value);
+  const docData = await grist.docApi.getDocData();
+  const table = docData.tables.find(t => t.tableId === event.target.value);
 
   let srccol = document.getElementById(event.target.id);
   srccol.innerHTML = ''
@@ -62,8 +60,6 @@ async function col_Selector(event)
     srccol.appendChild(op);
   }
 }
-
-
 
 async function start(){
     grist.ready({
