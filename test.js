@@ -1,6 +1,6 @@
 let pyodide;
 
-async function py_Start(src, dst){
+async function py_Start(src, dst, dstcol){
   const grist = window.grist;
   console.log(grist.docApi)
   py = await loadPyodide();
@@ -18,25 +18,24 @@ async function py_Start(src, dst){
   const records_json = py.runPython(`result.to_json(orient="records")`);
   const records = JSON.parse(records_json);
 
-  console.log(dst, src, src.textContent)
-
-  console.log(records[0])
   console.log(typeof grist.docApi.addRecords);
   for (let x = 0; x < records.length; x++)
-    await grist.docApi.applyUserActions([["AddRecord", dst, null, records[x]]]);
+    await grist.docApi.applyUserActions([["AddRecord", dst, null, {[dstcol]: records[x]}]]);
 }
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
   
-  let src = document.getElementById("sourcetable");
-  let dst = document.getElementById("desttable");
+  let src = document.getElementById("sourcecolumn");
+  let dst = document.getElementById("desttable")
+  let dstcol = document.getElementById("dstcolumn");
 
 
-  if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text)
+
+  if (src.selectedOptions[0].text === dst.selectedOptions[0].text)
   {
     let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
     let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
-    await py_Start(srctable, dst.selectedOptions[0].text);
+    await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
   }
 })
 
@@ -47,10 +46,9 @@ document.getElementById("desttable").addEventListener("change", col_Selector)
 async function col_Selector(event) 
 {
   let table = await grist.docApi.fetchTable(event.target.value);
-  console.log(table)
-
   let srccol = null;
-  if (event.target.id === "sourcetable")
+
+  if (event.target.id === "sourcetable") 
     srccol = document.getElementById("sourcecolumn");
   else
     srccol = document.getElementById("dstcolumn");
@@ -76,8 +74,6 @@ async function start(){
 
     let srcdrop = document.getElementById("sourcetable");
     let dstdrop = document.getElementById("desttable")
-    let srccol = document.getElementById("sourcecolumn");
-    let dstcol = document.getElementById("dstcolumn");
 
     for (const table of tables){
       const op1 = document.createElement("option");

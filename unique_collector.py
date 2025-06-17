@@ -2,17 +2,11 @@ import pandas as pd
 
 
 def test(src):
-    col_to_drop = ["id", "gristHelper_Display", "manualSort"]
     table = pd.DataFrame(src)
-    for col in table.columns:
-        for drop in col_to_drop:
-            if not col.find(drop):
-                table = table.drop(columns=col)
-    for x in range(len(table.columns)):
-        unique_lst = set()
-        for y in range(len(table.index)):
-            if table.at[table.index[y], table.columns[x]] in unique_lst:
-                table.at[table.index[y], table.columns[x]] = None
-            else:
-                unique_lst.add(table.at[table.index[y], table.columns[x]])
+    unique_lst = set()
+    for y in range(len(table.index)):
+        if table.at[table.index[y], 0] in unique_lst:
+            pass
+        else:
+            unique_lst.add(table.at[table.index[y], 0])
     return table
