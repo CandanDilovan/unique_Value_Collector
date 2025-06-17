@@ -47,10 +47,12 @@ document.getElementById("desttable").addEventListener("change", col_Selector)
 async function col_Selector(event) 
 {
   let table = await grist.docApi.fetchTable(event.target.value);
+  console.log(table)
 
   let srccol = document.getElementById(event.target.id);
+  console.log(srccol)
   srccol.innerHTML = ''
-
+  
   for (const col of table.columns)
   {
     const op = document.createElement("option");
