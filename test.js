@@ -30,12 +30,13 @@ document.getElementById("sourcetable").addEventListener("change", col_Selector);
 document.getElementById("desttable").addEventListener("change", col_Selector);
 document.getElementById("dupe").addEventListener("click", async(event) => {
   
-  let src = document.getElementById("sourcecolumn");
+  let src = document.getElementById("sourcetable");
+  let srccol = document.getElementById("sourcecolumn");
   let dst = document.getElementById("desttable");
   let dstcol = document.getElementById("dstcolumn");
 
   console.log(dstcol.selectedOptions[0].text)
-  if (src.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+  if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
   {
     let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
     let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
