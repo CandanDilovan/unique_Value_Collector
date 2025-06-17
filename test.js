@@ -2,7 +2,7 @@ let pyodide;
 
 async function py_Start(src, dst, dstcol){
   const grist = window.grist;
-  console.log(grist.docApi)
+  console.log('where')
   py = await loadPyodide();
   await py.loadPackage(['pandas'])
 
