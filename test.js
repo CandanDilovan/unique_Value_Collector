@@ -46,8 +46,7 @@ document.getElementById("desttable").addEventListener("change", col_Selector)
 
 async function col_Selector(event) 
 {
-  const docData = await grist.docApi.getMetaTables()
-  const table = docData.tables.find(t => t.tableId === event.target.value);
+  let table = await grist.docApi.fetchTable(event.target.value);
 
   let srccol = document.getElementById(event.target.id);
   srccol.innerHTML = ''
@@ -60,6 +59,7 @@ async function col_Selector(event)
     srccol.appendChild(op);
   }
 }
+
 
 async function start(){
     grist.ready({
