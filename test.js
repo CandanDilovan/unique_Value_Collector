@@ -31,7 +31,7 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
 
 
 
-  if (src.selectedOptions[0].text === dst.selectedOptions[0].text)
+  if (src.selectedOptions[0].text === dstcol.selectedOptions[0].text)
   {
     let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
     let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
