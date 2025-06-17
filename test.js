@@ -53,7 +53,7 @@ async function col_Selector(event)
   console.log(srccol)
   srccol.innerHTML = ''
   
-  for (const col of Object.keys(table.columns))
+  for (const col of Object.keys(table))
   {
     const op = document.createElement("option");
     op.value = col;
