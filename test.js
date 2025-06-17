@@ -49,7 +49,7 @@ async function col_Selector(event)
   let table = await grist.docApi.fetchTable(event.target.value);
   console.log(table)
 
-  const srccol = null;
+  let srccol = null;
   if (event.target.id === sourcetable)
     srccol = document.getElementById("sourcecolumn");
   else
