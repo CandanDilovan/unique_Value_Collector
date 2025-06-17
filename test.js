@@ -18,9 +18,10 @@ async function py_Start(src, dst, dstcol){
   const records_json = py.runPython(`result.to_json(orient="records")`);
   const records = JSON.parse(records_json);
 
+  console.log("nope");
   console.log(typeof grist.docApi.addRecords);
   for (let x = 0; x < records.length; x++)
-    await grist.docApi.applyUserActions([["AddRecord", dst, null, {[dstcol]: records[x]}]]);
+    await grist.docApi.applyUserActions([["AddRecord", dst, null, {dstcol: records[x]}]]);
 }
 
 
