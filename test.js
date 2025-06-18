@@ -77,8 +77,8 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
       {
         let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
-        console.log(src[dstcol.selectedOptions[0].text])
-        if (is_Text(src[dstcol.selectedOptions[0].text][1]))
+        console.log(srctable[dstcol.selectedOptions[0].text])
+        if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
           await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
         else
           throw "columns must be Texte type";
