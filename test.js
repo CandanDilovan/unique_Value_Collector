@@ -217,10 +217,6 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
     console.log(srctable[dstcol.selectedOptions[0].text])
     console.log(dstcol.selectedOptions[0].value)
-    for (const col of srctable)
-    {
-      console.log(col.type)
-    }
     await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
   }
 })
