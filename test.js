@@ -216,7 +216,7 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
     let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
     console.log(srctable)
-    for (const col of srctable.columns)
+    for (const col of srctable)
     {
       console.log(col.type)
     }
