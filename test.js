@@ -76,7 +76,8 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     console.log(dstcol.selectedOptions[0].text)
     if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
       {
-        let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
+        let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
+        console.log(src[dstcol.selectedOptions[0].text][1])
         if (is_Text(src[dstcol.selectedOptions[0].text][1]))
           await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
         else
