@@ -201,6 +201,8 @@ async function py_Start(src, dst, dstcol)
     }
 }
 
+document.getElementById("sourcetable").addEventListener("change", col_Selector);
+document.getElementById("desttable").addEventListener("change", col_Selector);
 document.getElementById("dupe").addEventListener("click", async(event) => {
   
   let src = document.getElementById("sourcetable");
@@ -216,9 +218,6 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
   }
 })
-
-document.getElementById("sourcetable").addEventListener("change", col_Selector);
-document.getElementById("desttable").addEventListener("change", col_Selector);
 
 async function col_Selector(event) 
 {

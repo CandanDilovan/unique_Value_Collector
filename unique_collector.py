@@ -7,7 +7,7 @@ def test(src, dstcol):
     print(table)
     unique_lst = {dstcol: []}
     for row in table:
-        if row in unique_lst:
+        if row in unique_lst[dstcol]:
             pass
         else:
             unique_lst[dstcol].append(row)
