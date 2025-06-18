@@ -47,8 +47,9 @@ async function py_Start(src, dst, dstcol)
         for (let x = 0; x < records.length; x++) 
         {
           let dsttable = await grist.docApi.fetchTable(dst.value)
-          console.log(dsttable[dstcol][x], '        ', records[x])
-          if (dsttable[dstcol][x] !== records[x])
+          console.log(records)
+          console.log(dsttable[dstcol][x], '        ', records[x][dstcol])
+          if (dsttable[dstcol][x] !== records[x][dstcol])
             await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
           
           const stepProgress = 80 + ((x + 1) / records.length) * 20;
