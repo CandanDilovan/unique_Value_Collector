@@ -5,11 +5,12 @@ def test(src, dstcol):
     df = pd.DataFrame(src)
     table = df[dstcol]
     print(table)
-    for x in range(len(table.columns)):
-        unique_lst = set()
-        for y in range(len(table.index)):
-            if table.at[table.index[y], table.columns[x]] in unique_lst:
-                table.at[table.index[y], table.columns[x]] = None
-            else:
-                unique_lst.add(table.at[table.index[y], table.columns[x]])
-    return table
+    unique_lst = {dstcol: []}
+    for row in table:
+        if row in unique_lst:
+            pass
+        else:
+            unique_lst[dstcol].append(row)
+    new_df = pd.DataFrame(unique_lst)
+    print(new_df)
+    return new_df
