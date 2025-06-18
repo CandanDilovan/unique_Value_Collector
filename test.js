@@ -44,15 +44,18 @@ async function py_Start(src, dst, dstcol)
         
         console.log(typeof grist.docApi.addRecords);
         
-        for (let x = 0; x < records.length; x++) {
-            await grist.docApi.applyUserActions([["AddRecord", dst, null, records[x]]]);
-            
-            const stepProgress = 80 + ((x + 1) / records.length) * 20;
-            updateProgress(
-                Math.round(stepProgress), 
-                "Ajout des enregistrements...", 
-                `${x + 1}/${records.length} enregistrements ajoutés`
-            );
+        for (let x = 0; x < records.length; x++) 
+        {
+          let dsttable = await grist.docApi.fetchTable(dst.value)
+          if (dsttable[dst.text][x] !== records[x])
+            await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
+          
+          const stepProgress = 80 + ((x + 1) / records.length) * 20;
+          updateProgress(
+              Math.round(stepProgress), 
+              "Ajout des enregistrements...", 
+              `${x + 1}/${records.length} enregistrements ajoutés`
+          );
         }
         
         showSuccess(records.length);
@@ -79,7 +82,7 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
         let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
         console.log(srctable[dstcol.selectedOptions[0].text][0])
         if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-          await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
+          await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
         else
           throw "columns must be Texte type";
       }
