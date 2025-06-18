@@ -63,7 +63,7 @@ function is_Text(str)
     {
         let code = str.charCodeAt(i);
         console.log(code)
-        if (!(code > 47 && code < 123))
+        if (!((code > 47 && code < 123) || code === 32))
             return false
     }
     return true
