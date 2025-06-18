@@ -1,143 +1,5 @@
 let pyodide;
 
-function createProgressInterface() {
-    const container = document.createElement('div');
-    container.id = 'progress-container';
-    container.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 350px;
-        background: white;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
-        font-family: Arial, sans-serif;
-        display: none;
-    `;
-
-    const title = document.createElement('div');
-    title.style.cssText = `
-        font-size: 16px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 15px;
-        text-align: center;
-    `;
-    title.textContent = 'Traitement en cours...';
-
-    const progressBar = document.createElement('div');
-    progressBar.id = 'progress-bar-container';
-    progressBar.style.cssText = `
-        width: 100%;
-        height: 25px;
-        background-color: #f0f0f0;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-    `;
-
-    const progressFill = document.createElement('div');
-    progressFill.id = 'progress-fill';
-    progressFill.style.cssText = `
-        width: 0%;
-        height: 100%;
-        background: linear-gradient(90deg, #4CAF50, #45a049);
-        transition: width 0.4s ease;
-        border-radius: 12px;
-    `;
-
-    const statusMessage = document.createElement('div');
-    statusMessage.id = 'status-message';
-    statusMessage.style.cssText = `
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 8px;
-        min-height: 20px;
-    `;
-
-    const detailsText = document.createElement('div');
-    detailsText.id = 'details-text';
-    detailsText.style.cssText = `
-        font-size: 12px;
-        color: #777;
-        text-align: center;
-    `;
-
-    progressBar.appendChild(progressFill);
-    container.appendChild(title);
-    container.appendChild(statusMessage);
-    container.appendChild(progressBar);
-    container.appendChild(detailsText);
-    document.body.appendChild(container);
-}
-
-function showProgress() {
-    const container = document.getElementById('progress-container');
-    if (container) {
-        container.style.display = 'block';
-    }
-}
-
-function updateProgress(percentage, message, details = '') {
-    const fill = document.getElementById('progress-fill');
-    const status = document.getElementById('status-message');
-    const detailsEl = document.getElementById('details-text');
-    
-    if (fill) fill.style.width = percentage + '%';
-    if (status) status.textContent = message;
-    if (detailsEl) detailsEl.textContent = details;
-}
-
-function showSuccess(recordsCount) {
-    const container = document.getElementById('progress-container');
-    const title = container.querySelector('div');
-    
-    if (container && title) {
-        container.style.background = '#d4edda';
-        container.style.borderColor = '#28a745';
-        title.textContent = '✅ Traitement terminé !';
-        title.style.color = '#155724';
-        
-        updateProgress(100, `${recordsCount} enregistrements ajoutés avec succès`, 'Cliquez pour fermer');
-        
-        container.style.cursor = 'pointer';
-        container.onclick = () => container.remove();
-        
-        setTimeout(() => {
-            if (container.parentNode) {
-                container.remove();
-            }
-        }, 5000);
-    }
-}
-
-function showError(errorMessage) {
-    const container = document.getElementById('progress-container');
-    const title = container.querySelector('div');
-    
-    if (container && title) {
-        container.style.background = '#f8d7da';
-        container.style.borderColor = '#dc3545';
-        title.textContent = '❌ Erreur';
-        title.style.color = '#721c24';
-        
-        updateProgress(0, errorMessage, 'Cliquez pour fermer');
-        
-        container.style.cursor = 'pointer';
-        container.onclick = () => container.remove();
-        
-        setTimeout(() => {
-            if (container.parentNode) {
-                container.remove();
-            }
-        }, 8000);
-    }
-}
-
 async function py_Start(src, dst, dstcol)
 {
     createProgressInterface();
@@ -204,21 +66,26 @@ async function py_Start(src, dst, dstcol)
 document.getElementById("sourcetable").addEventListener("change", col_Selector);
 document.getElementById("desttable").addEventListener("change", col_Selector);
 document.getElementById("dupe").addEventListener("click", async(event) => {
-  
-  let src = document.getElementById("sourcetable");
-  let srccol = document.getElementById("sourcecolumn");
-  let dst = document.getElementById("desttable");
-  let dstcol = document.getElementById("dstcolumn");
-
-  console.log(dstcol.selectedOptions[0].text)
-  if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+  try 
   {
-    let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
-    let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
-    console.log(srctable[dstcol.selectedOptions[0].text])
-    console.log(dstcol.selectedOptions[0].value)
-    await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
-  }
+    let src = document.getElementById("sourcetable");
+    let srccol = document.getElementById("sourcecolumn");
+    let dst = document.getElementById("desttable");
+    let dstcol = document.getElementById("dstcolumn");
+    
+    console.log(dstcol.selectedOptions[0].text)
+    if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+      {
+        let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
+        if (src[dstcol.selectedOptions[0].text][0])
+        await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
+      }
+    }
+    catch (error)
+    {
+      console.error(error)
+      showError(error.message)
+    }
 })
 
 async function col_Selector(event) 
