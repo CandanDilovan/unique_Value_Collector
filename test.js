@@ -138,7 +138,8 @@ function showError(errorMessage) {
     }
 }
 
-async function py_Start(src, dst) {
+async function py_Start(src, dst, dstcol)
+{
     createProgressInterface();
     showProgress();
     updateProgress(0, "Initialisation...", "Préparation du traitement");
@@ -170,7 +171,8 @@ async function py_Start(src, dst) {
         
         updateProgress(65, "Traitement des données...", "Analyse des doublons");
         py.globals.set("src", py.toPy(src));
-        await py.runPythonAsync(`result = test(src)`);
+        py.globals.set("dstcol", py.toPy(dstcol));
+        await py.runPythonAsync(`result = test(src, dstcol)`);
         updateProgress(75, "Données traitées", "Résultats générés");
         
         updateProgress(78, "Conversion des résultats...", "Préparation pour Grist");
@@ -178,8 +180,6 @@ async function py_Start(src, dst) {
         const records = JSON.parse(records_json);
         updateProgress(80, "Conversion terminée", `${records.length} enregistrements à ajouter`);
         
-        console.log(dst, src, src.textContent);
-        console.log(records[0]);
         console.log(typeof grist.docApi.addRecords);
         
         for (let x = 0; x < records.length; x++) {
@@ -202,20 +202,26 @@ async function py_Start(src, dst) {
 }
 
 document.getElementById("dupe").addEventListener("click", async(event) => {
-    let src = document.getElementById("sourcetable");
-    let dst = document.getElementById("desttable");
-    
-    if (src.selectedOptions[0].text + "_dupe" === dst.selectedOptions[0].text) {
-        let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
-        let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
-        await py_Start(srctable, dst.selectedOptions[0].text);
-    }
-});
+  
+  let src = document.getElementById("sourcetable");
+  let srccol = document.getElementById("sourcecolumn");
+  let dst = document.getElementById("desttable");
+  let dstcol = document.getElementById("dstcolumn");
+
+  console.log(dstcol.selectedOptions[0].text)
+  if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+  {
+    let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value); 
+    let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
+    await py_Start(srctable, dst.selectedOptions[0].text, dstcol.selectedOptions[0].text);
+  }
+})
 
 document.getElementById("sourcetable").addEventListener("change", col_Selector);
 document.getElementById("desttable").addEventListener("change", col_Selector);
 
-async function col_Selector(event) {
+async function col_Selector(event) 
+{
     let table = await grist.docApi.fetchTable(event.target.value);
     console.log(table);
     let srccol = null;
@@ -228,7 +234,8 @@ async function col_Selector(event) {
     console.log(srccol);
     srccol.innerHTML = '';
     
-    for (const col of Object.keys(table)) {
+    for (const col of Object.keys(table))
+    {
         const op = document.createElement("option");
         op.value = col;
         op.textContent = col;
@@ -236,7 +243,8 @@ async function col_Selector(event) {
     }
 }
 
-async function start() {
+async function start() 
+{
     grist.ready({
         requiredAccess: 'full',
     });
