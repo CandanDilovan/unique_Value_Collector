@@ -87,7 +87,6 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     catch (error)
     {
       console.error(error)
-      showError(error.message)
     }
 })
 

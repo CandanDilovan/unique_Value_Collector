@@ -48,7 +48,7 @@ function is_All_Num(str)
 {
     for (i = 0; i < str.length; i++)
     {
-        code = str.charCodeAt(i);
+        let code = str.charCodeAt(i);
         if (!(code > 47 && code < 58))
             return false; 
     }
@@ -61,7 +61,8 @@ function is_Text(str)
         return false
     for (i = 0; i < str.length; i++)
     {
-        code = str.charCodeAt(i);
+        let code = str.charCodeAt(i);
+        console.log(code)
         if (!(code > 47 && code < 123))
             return false
     }
