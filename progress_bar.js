@@ -1,7 +1,6 @@
 
 function createProgressInterface() {
-    const container = document.createElement('div');
-    container.id = 'progress-container';
+    const container = document.getElementById('progress-container')
     container.style.cssText = `
         position: fixed;
         top: 20px;
