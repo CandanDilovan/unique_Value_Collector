@@ -45,6 +45,8 @@ async function py_Start(src, dst, dstcol)
         {
             let dsttable = await grist.docApi.fetchTable(dst.value);
 
+            console.log(dsttable[dstcol][x])
+            console.log(x)
             if (dsttable[dstcol][x] !== records[x][dstcol])
                 console.log(dsttable[dstcol][x])
                 if (dsttable[dstcol][x])
