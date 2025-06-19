@@ -41,7 +41,7 @@ async function py_Start(src, dst, dstcol)
         const records = JSON.parse(records_json);
         updateProgress(80, "Conversion terminée", `${records.length} enregistrements à ajouter`);
         
-        for (let x = 0; x < records.length; x++) 
+        for (let x = 1; x < records.length; x++) 
         {
             let dsttable = await grist.docApi.fetchTable(dst.value);
 
