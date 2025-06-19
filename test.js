@@ -46,6 +46,7 @@ async function py_Start(src, dst, dstcol)
             let dsttable = await grist.docApi.fetchTable(dst.value);
 
             if (dsttable[dstcol][x] !== records[x][dstcol])
+                console.log(dsttable[dstcol][x])
                 if (dsttable[dstcol][x])
                     await grist.docApi.applyUserActions([["UpdateRecord", dst.text, x, records[x]]]);
                 else
