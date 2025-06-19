@@ -8,8 +8,7 @@ async function py_Start(src, dst, dstcol)
     
     try {
         const grist = window.grist;
-        console.log(grist.docApi);
-        
+
         updateProgress(5, "Chargement de Pyodide...", "Initialisation de l'environnement Python");
         py = await loadPyodide();
         updateProgress(15, "Pyodide chargé", "Environnement Python prêt");
@@ -42,27 +41,26 @@ async function py_Start(src, dst, dstcol)
         const records = JSON.parse(records_json);
         updateProgress(80, "Conversion terminée", `${records.length} enregistrements à ajouter`);
         
-        console.log(typeof grist.docApi.addRecords);
-        
         for (let x = 0; x < records.length; x++) 
         {
-          let dsttable = await grist.docApi.fetchTable(dst.value)
-          console.log(records)
-          console.log(dsttable[dstcol][x], '        ', records[x][dstcol])
-          if (dsttable[dstcol][x] !== records[x][dstcol])
-            await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
-          
-          const stepProgress = 80 + ((x + 1) / records.length) * 20;
-          updateProgress(
-              Math.round(stepProgress), 
-              "Ajout des enregistrements...", 
-              `${x + 1}/${records.length} enregistrements ajoutés`
-          );
+            let dsttable = await grist.docApi.fetchTable(dst.value);
+
+            if (dsttable[dstcol][x] !== records[x][dstcol])
+                if (dsttable[dstcol][x])
+                    await grist.docApi.applyUserActions([["UpdateRecord", dst.text, x, records[x]]]);
+                else
+                    await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
+
+            const stepProgress = 80 + ((x + 1) / records.length) * 20;
+            updateProgress(
+                Math.round(stepProgress), 
+                "Ajout des enregistrements...", 
+                `${x + 1}/${records.length} enregistrements ajoutés`
+            );
         }
-        
         showSuccess(records.length);
-        
-    } catch (error) {
+    } 
+    catch (error) {
         console.error('Erreur dans py_Start:', error);
         showError(error.message || 'Une erreur inattendue s\'est produite');
     }
@@ -78,11 +76,9 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     let dst = document.getElementById("desttable");
     let dstcol = document.getElementById("dstcolumn");
     
-    console.log(dstcol.selectedOptions[0].text)
     if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
       {
         let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
-        console.log(srctable[dstcol.selectedOptions[0].text][0])
         if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
           await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
         else
@@ -98,7 +94,6 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
 async function col_Selector(event) 
 {
     let table = await grist.docApi.fetchTable(event.target.value);
-    console.log(table);
     let srccol = null;
     
     if (event.target.id === "sourcetable")
@@ -106,7 +101,6 @@ async function col_Selector(event)
     else
         srccol = document.getElementById("dstcolumn");
     
-    console.log(srccol);
     srccol.innerHTML = '';
     
     for (const col of Object.keys(table))
@@ -129,8 +123,6 @@ async function start()
     
     let srcdrop = document.getElementById("sourcetable");
     let dstdrop = document.getElementById("desttable");
-    let srccol = document.getElementById("sourcecolumn");
-    let dstcol = document.getElementById("dstcolumn");
     
     for (const table of tables) {
         const op1 = document.createElement("option");

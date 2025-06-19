@@ -5,5 +5,4 @@ def test(src, dstcol):
     df = pd.DataFrame(src)
     table = df[dstcol].drop_duplicates().reset_index(drop=True)
     new_df = pd.DataFrame({dstcol: table})
-    print(new_df)
     return new_df
