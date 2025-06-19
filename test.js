@@ -71,8 +71,10 @@ async function py_Start(src, dst, dstcol)
 document.getElementById("sourcetable").addEventListener("change", col_Selector);
 document.getElementById("desttable").addEventListener("change", col_Selector);
 document.getElementById("dupe").addEventListener("click", async(event) => {
-  try 
-  {
+    const button =  event.target;
+    button.disabled = true;
+    try 
+    {
     let src = document.getElementById("sourcetable");
     let srccol = document.getElementById("sourcecolumn");
     let dst = document.getElementById("desttable");
@@ -89,8 +91,12 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     }
     catch (error)
     {
-      console.error(error)
-       showError(error.message)
+        console.error(error)
+        showError(error.message)
+    }
+    finally
+    {
+        button.disabled = false
     }
 })
 
