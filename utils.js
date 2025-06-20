@@ -88,17 +88,6 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
             styleReset(select)
         }
     });
-
-    select.addEventListener('blur', () => {
-        wrapp.classList.remove('open');
-        styleReset(select)
-    });
-
-    select.addEventListener('change', () => {
-        wrapp.classList.remove('open');
-        styleReset(select)
-    });
-
 });
 
 function styleReset(element)
