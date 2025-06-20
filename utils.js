@@ -70,12 +70,23 @@ function is_Text(str)
 
 document.querySelectorAll('.select-wrapper select').forEach(select => {
     const wrapp = select.parentElement;
+    let is_Open = false
 
-    select.addEventListener('focus', () => {
-        wrapp.classList.add('open');
-        select.style.boxShadow = "0 0 5px 2px #13d78d";
-        select.style.outline = "none";
-        select.style.borderColor = '#13d78d';
+    select.addEventListener('mousdedown', () => {
+        if (!is_Open)
+        {
+            is_Open = true;
+            wrapp.classList.add('open');
+            select.style.boxShadow = "0 0 5px 2px #13d78d";
+            select.style.outline = "none";
+            select.style.borderColor = '#13d78d';
+        }
+        else
+        {
+            is_Open = false
+            wrapp.classList.remove('open');
+            styleReset(select)
+        }
     });
 
     select.addEventListener('blur', () => {
