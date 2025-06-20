@@ -75,19 +75,19 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
     button.disabled = true;
     try 
     {
-    let src = document.getElementById("sourcetable");
-    let srccol = document.getElementById("sourcecolumn");
-    let dst = document.getElementById("desttable");
-    let dstcol = document.getElementById("dstcolumn");
+        let src = document.getElementById("sourcetable");
+        let srccol = document.getElementById("sourcecolumn");
+        let dst = document.getElementById("desttable");
+        let dstcol = document.getElementById("dstcolumn");
     
-    if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
-      {
-        let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
-        if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-          await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
-        else
-          throw "columns must be Texte type";
-      }
+        if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+        {
+            let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
+            if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
+            await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
+            else
+            throw "columns must be Texte type";
+        }
     }
     catch (error)
     {
