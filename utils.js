@@ -93,7 +93,7 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
     });
 
     select.addEventListener('click', () => {
-        if (is_Open)
+        if (!is_Open)
             styleReset(select)
     })
 });
