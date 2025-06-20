@@ -110,19 +110,19 @@ function styleReset(element)
     element.style.borderColor = "";
 }
 
-document.getElementById("sourcetable").addEventListener("change", show_Col);
-document.getElementById("desttable").addEventListener("change", show_Col);
+// document.getElementById("sourcetable").addEventListener("change", show_Col);
+// document.getElementById("desttable").addEventListener("change", show_Col);
 
-function show_Col(event){
-    const element = document.getElementById(event.target.id);
-    let col = null;
-    if (element === "sourcetable")
-        col = document.getElementById("srccol_wrap");
-    else
-        col = document.getElementById("dstcol_wrap");
+// function show_Col(event){
+//     const element = document.getElementById(event.target.id);
+//     let col = null;
+//     if (element === "sourcetable")
+//         col = document.getElementById("srccol_wrap");
+//     else
+//         col = document.getElementById("dstcol_wrap");
 
-    if (element.value)
-        col.style.display = "block";
-    else
-        col.style.display = "none";
-}
+//     if (element.value)
+//         col.style.display = "block";
+//     else
+//         col.style.display = "none";
+// }
