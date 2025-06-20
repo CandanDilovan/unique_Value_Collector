@@ -122,7 +122,7 @@ function show_Col(event){
         col = document.getElementById("dstcol_wrap");
 
     if (element.value)
-        col.style.display = "bock";
+        col.style.display = "block";
     else
         col.style.display = "none";
 }
