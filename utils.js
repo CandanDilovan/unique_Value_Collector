@@ -70,32 +70,30 @@ function is_Text(str)
 
 document.querySelectorAll('.select-wrapper select').forEach(select => {
     const wrapp = select.parentElement;
-    let is_Open = false;
 
     select.addEventListener('focus', () => {
         wrapp.classList.add('open');
         select.style.boxShadow = "0 0 5px 2px #13d78d";
         select.style.outline = "none";
         select.style.borderColor = '#13d78d';
-        is_Open = true;
     });
 
     select.addEventListener('blur', () => {
         wrapp.classList.remove('open');
         styleReset(select)
-        is_Open = false;
     });
 
     select.addEventListener('change', () => {
         wrapp.classList.remove('open');
         styleReset(select)
-        is_Open = false;
     });
 
     select.addEventListener('click', () => {
-        if (!is_Open)
-            styleReset(select)
-    })
+        setTimeout(() => {
+            if (document.activeElement !== select)
+                styleReset(select);
+        }, 150);
+    });
 });
 
 function styleReset(element)
