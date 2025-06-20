@@ -67,3 +67,19 @@ function is_Text(str)
     }
     return true
 }
+
+document.querySelectorAll('.select-wrapper select').forEach(select => {
+    const wrapp = select.parentElement;
+
+    select.addEventListener('mousedown', () => {
+        wrapp.classList.toggle('open');
+    });
+
+    select.addEventListener('blur', () => {
+        wrapp.classList.remove('open');
+    });
+
+    select.addEventListener('change', () => {
+        wrapp.classList.remove('open');
+    });
+});
