@@ -114,9 +114,9 @@ document.getElementById("sourcetable").addEventListener("change", show_Col);
 document.getElementById("desttable").addEventListener("change", show_Col);
 
 function show_Col(event){
-    const element = document.getElementById(event.target.id);
+    const element = document.getElementById(event.target);
     let col = null;
-    if (element === "sourcetable")
+    if (element.id === "sourcetable")
         col = document.getElementById("srccol_wrap");
     else
         col = document.getElementById("dstcol_wrap");
