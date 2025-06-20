@@ -72,7 +72,7 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
     const wrapp = select.parentElement;
     let is_Open = false
 
-    select.addEventListener('mousdedown', () => {
+    select.addEventListener('mousedown', () => {
         if (!is_Open)
         {
             is_Open = true;
