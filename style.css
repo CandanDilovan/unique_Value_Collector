@@ -31,7 +31,7 @@ h3 {
   color: #d0d3d6;
 }
 
-/* Select wrapper to apply arrow separately */
+
 .select-wrapper {
   position: relative;
   width: 240px;
@@ -51,11 +51,6 @@ h3 {
   transition: border-color 0.2s;
 }
 
-.select-wrapper select:focus {
-  border-color: #4c9aff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
-}
 
 .select-wrapper::after {
   content: "▼";
