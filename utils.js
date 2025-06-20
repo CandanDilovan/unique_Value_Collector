@@ -80,14 +80,14 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
 
     select.addEventListener('blur', () => {
         wrapp.classList.remove('open');
-        select.style.boxShadow = "none";
+        select.style.boxShadow = "";
         select.style.outline = "none";
         select.style.borderColor = "";
     });
 
     select.addEventListener('change', () => {
         wrapp.classList.remove('open');
-        select.style.boxShadow = "none";
+        select.style.boxShadow = "";
         select.style.outline = "none";
         select.style.borderColor = ""
     });
