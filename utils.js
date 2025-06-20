@@ -73,13 +73,22 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
 
     select.addEventListener('mousedown', () => {
         wrapp.classList.toggle('open');
+        select.style.boxShadow = "0 0 5px 2px #13d78d";
+        select.style.outline = "none";
+        select.style.borderColor = '#13d78d';
     });
 
     select.addEventListener('blur', () => {
         wrapp.classList.remove('open');
+        select.style.boxShadow = "none";
+        select.style.outline = "none";
+        select.style.borderColor = "none";
     });
 
     select.addEventListener('change', () => {
         wrapp.classList.remove('open');
+        select.style.boxShadow = "none";
+        select.style.outline = "none";
+        select.style.borderColor = "none"
     });
 });
