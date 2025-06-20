@@ -51,6 +51,9 @@ h3 {
   transition: border-color 0.2s;
 }
 
+.select-wrapper.open select {
+  transition: box-shadow 0.2s ease;
+}
 
 .select-wrapper::after {
   content: "▼";

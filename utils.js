@@ -88,12 +88,6 @@ document.querySelectorAll('.select-wrapper select').forEach(select => {
         styleReset(select)
     });
 
-    select.addEventListener('click', () => {
-        setTimeout(() => {
-            if (document.activeElement !== select)
-                styleReset(select);
-        }, 150);
-    });
 });
 
 function styleReset(element)
