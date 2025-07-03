@@ -85,4 +85,22 @@ async function ready(fn) {
     }
 }
 
+async function oto_load() {
+    const tables = await grist.docApi.listTables();
+    
+    let srcdrop = document.getElementById("sourcetable");
+    let dstdrop = document.getElementById("desttable");
+    
+    for (const table of tables) {
+        const op1 = document.createElement("option");
+        const op2 = document.createElement("option");
+        op1.value = table;
+        op1.textContent = table;
+        op2.value = table;
+        op2.textContent = table;
+        srcdrop.appendChild(op1);
+        dstdrop.appendChild(op2);
+    }
+}
+
 ready(start);
