@@ -84,9 +84,9 @@ document.getElementById("dupe").addEventListener("click", async(event) => {
         {
             let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
             if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-            await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
+                await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
             else
-            throw "columns must be Texte type";
+                throw "columns must be Texte type";
         }
     }
     catch (error)
@@ -121,13 +121,8 @@ async function col_Selector(event)
     }
 }
 
-async function start() 
-{
-    grist.ready({
-        requiredAccess: 'full',
-    });
-    
-    console.log("docApi methods:", Object.keys(grist.docApi));
+
+async function oto_load() {
     const tables = await grist.docApi.listTables();
     
     let srcdrop = document.getElementById("sourcetable");
@@ -143,6 +138,16 @@ async function start()
         srcdrop.appendChild(op1);
         dstdrop.appendChild(op2);
     }
+}
+
+async function start() 
+{
+    grist.ready({
+        requiredAccess: 'full',
+    });
+    
+    console.log("docApi methods:", Object.keys(grist.docApi));
+    await oto_load();
 }
 
 async function ready(fn) {
