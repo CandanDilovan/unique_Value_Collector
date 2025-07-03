@@ -13,7 +13,9 @@ document.getElementById("oto_button").addEventListener("click", async() =>{
         const tmp = document.createElement("div");
         tmp.innerHTML = html;
 
-        container.appendChild(tmp.querySelector(".oto_block"))
+        const block = tmp.querySelector(".oto_block");
+
+        container.appendChild(block);
         await oto_load();
     }
     catch(err){
@@ -36,7 +38,9 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
         const tmp = document.createElement("div");
         tmp.innerHTML = html;
 
-        container.appendChild(tmp.querySelector(".otm_block"))
+        const block = tmp.querySelector(".oto_block");
+
+        container.appendChild(block)
         await oto_load();
     }
     catch(err){
