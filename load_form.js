@@ -8,14 +8,9 @@ document.getElementById("oto_button").addEventListener("click", async() =>{
             container.removeChild("otm_block")
 
         const response = await fetch("sub_html/one-to-one.html");
-        const html = await response.text();
 
-        const tmp = document.createElement("div");
-        tmp.innerHTML = html;
+        container.innerHTML += await response.text();
 
-        const block = tmp.querySelector(".oto_block");
-
-        container.appendChild(block);
         await oto_load();
     }
     catch(err){
@@ -33,14 +28,7 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
             container.removeChild("oto_block")
 
         const response = await fetch("sub_html/one-to-many.html");
-        const html = await response.text();
-
-        const tmp = document.createElement("div");
-        tmp.innerHTML = html;
-
-        const block = tmp.querySelector(".oto_block");
-
-        container.appendChild(block)
+        container.innerHTML += await response.text();
         await oto_load();
     }
     catch(err){
