@@ -7,7 +7,7 @@ document.getElementById("oto_button").addEventListener("click", async() =>{
         else if (document.getElementById("otm_block"))
             container.removeChild("otm_block")
 
-        const response = await fetch("one-to-one.html");
+        const response = await fetch("sub_html/one-to-one.html");
         const html = await response.text();
 
         const tmp = document.createElement("div");
@@ -30,7 +30,7 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
         else if (document.getElementById("oto_block"))
             container.removeChild("oto_block")
 
-        const response = await fetch("one-to-many.html");
+        const response = await fetch("sub_html/one-to-many.html");
         const html = await response.text();
 
         const tmp = document.createElement("div");
