@@ -5,7 +5,7 @@ document.getElementById("oto_button").addEventListener("click", async() =>{
         if (document.getElementById("oto_block"))
             throw ("already loaded");
         else if (document.getElementById("otm_block"))
-            container.removeChild("otm_block")
+            container.innerHTML = "";
 
         const response = await fetch("sub_html/one-to-one.html");
 
@@ -25,7 +25,7 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
         if (document.getElementById("otm_block"))
             throw ("already loaded");
         else if (document.getElementById("oto_block"))
-            container.removeChild("oto_block")
+            container.innerHTML = "";
 
         const response = await fetch("sub_html/one-to-many.html");
         container.innerHTML += await response.text();
