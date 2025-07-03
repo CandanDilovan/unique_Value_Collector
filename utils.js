@@ -110,9 +110,6 @@ function styleReset(element)
     element.style.borderColor = "";
 }
 
-document.getElementById("sourcetable").addEventListener("change", show_Col);
-document.getElementById("desttable").addEventListener("change", show_Col);
-
 function show_Col(event){
     const element = document.getElementById(event.target);
     let col = null;
@@ -126,3 +123,25 @@ function show_Col(event){
     else
         col.style.display = "none";
 }
+
+async function col_Selector(event) 
+{
+    let table = await grist.docApi.fetchTable(event.target.value);
+    let srccol = null;
+    
+    if (event.target.id === "sourcetable")
+        srccol = document.getElementById("sourcecolumn");
+    else
+        srccol = document.getElementById("dstcolumn");
+    
+    srccol.innerHTML = '';
+    
+    for (const col of Object.keys(table))
+    {
+        const op = document.createElement("option");
+        op.value = col;
+        op.textContent = col;
+        srccol.appendChild(op);
+    }
+}
+
