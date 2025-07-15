@@ -15,7 +15,7 @@ def otm_unique(src, dstcol, dstlst):
     for x in range(len(df[dstcol])):
         if df[dstcol][x] not in unique_lst:
             unique_lst.add(df[dstcol][x])
-            new_df.con
+            new_df.loc(len(new_df)) = add_Row(dstlst, x , df)
     return new_df
 
 
