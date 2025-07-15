@@ -1,11 +1,12 @@
-async function oto_load() {
+async function otm_load(params) {
     const tables = await grist.docApi.listTables();
+    
     tables = tables.sort();
 
-    
     let srcdrop = document.getElementById("sourcetable");
     let dstdrop = document.getElementById("desttable");
-    
+
+
     for (const table of tables) {
         const op1 = document.createElement("option");
         const op2 = document.createElement("option");
@@ -16,11 +17,9 @@ async function oto_load() {
         srcdrop.appendChild(op1);
         dstdrop.appendChild(op2);
     }
-    
     document.getElementById("sourcetable").addEventListener("change", show_Col);
     document.getElementById("desttable").addEventListener("change", show_Col);
 
-    document.getElementById("sourcetable").addEventListener("change", col_Selector);
     document.getElementById("desttable").addEventListener("change", col_Selector);
     document.getElementById("dupe").addEventListener("click", async(event) => {
         const button =  event.target;
@@ -28,18 +27,21 @@ async function oto_load() {
         try 
         {
             let src = document.getElementById("sourcetable");
-            let srccol = document.getElementById("sourcecolumn");
             let dst = document.getElementById("desttable");
             let dstcol = document.getElementById("dstcolumn");
+
+            let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
+            let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
         
-            if (srccol.selectedOptions[0].text === dstcol.selectedOptions[0].text)
+            if (check_Col(dstcol.selectedOptions[0].text, srctable))
             {
-                let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
                 if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-                    await py_Start(srctable, dst.selectedOptions[0], dstcol.selectedOptions[0].text);
+                    await py_Start(srctable, dst.selectedOptions[0], check_Col(dsttable, dstcol.selectedOptions[0].text));
                 else
                     throw "columns must be Texte type";
             }
+            else
+                throw "tables do not match";
         }
         catch (error)
         {
@@ -48,8 +50,28 @@ async function oto_load() {
         }
         finally
         {
-            button.disabled = false
+            button.disabled = false;
         }
     });
 }
 
+function rearange_Cols(dsttable, dstcol)
+{
+    new_lst = [dstcol];
+    for (let x = 0; x < dsttable.lenght; x++)
+    {
+        if (dsttable[x] !== dstcol)
+            new_lst.appendChild(dsttable[x]);   
+    }
+    return new_lst
+}
+
+function check_Col(dst, src)
+{
+    for (let x = 0; x < src.lenght; x++)
+    {
+        if (dst === src[x])
+            return true;
+    }
+    return false;
+}
