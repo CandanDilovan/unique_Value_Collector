@@ -135,7 +135,7 @@ async function col_Selector(event)
         srccol = document.getElementById("dstcolumn");
     
     srccol.innerHTML = '';
-    table = table.sort();
+    table = Object.keys(table).sort();
     for (const col of Object.keys(table))
     {
         const op = document.createElement("option");

@@ -1,4 +1,4 @@
-async function otm_load(params) {
+async function otm_load() {
     let tables = await grist.docApi.listTables();
     
     tables = tables.sort();

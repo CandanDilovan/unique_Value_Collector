@@ -29,6 +29,8 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
 
         const response = await fetch("sub_html/one-to-many.html");
         container.innerHTML += await response.text();
+
+        await otm_load();
     }
     catch(err){
         console.error(err);
