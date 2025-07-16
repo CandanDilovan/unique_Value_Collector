@@ -1,5 +1,5 @@
 async function oto_load() {
-    const tables = await grist.docApi.listTables();
+    let tables = await grist.docApi.listTables();
     tables = tables.sort();
 
     
