@@ -8,14 +8,14 @@ def oto_unique(src, dstcol):
     return new_df
 
 
-def otm_unique(src, dstcol, dstlst):
+def otm_unique(src, dstcol):
     df = pd.DataFrame(src)
     unique_lst = set()
-    new_df = pd.DataFrame(columns=dstlst)
-    for x in range(len(df[dstcol])):
-        if df[dstcol][x] not in unique_lst:
-            unique_lst.add(df[dstcol][x])
-            new_df.loc[len(new_df)] = add_Row(dstlst, x, df)
+    new_df = pd.DataFrame(columns=dstcol)
+    for x in range(len(df[dstcol[0]])):
+        if df[dstcol[0]][x] not in unique_lst:
+            unique_lst.add(df[dstcol[0]][x])
+            new_df.loc[len(new_df)] = add_Row(dstcol, x, df)
     return new_df
 
 
