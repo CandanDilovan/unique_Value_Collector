@@ -23,7 +23,7 @@ async function py_Start(src, dst, dstcol)
         py.globals.set("src", py.toPy(src));
         py.globals.set("dstcol", py.toPy(dstcol));
         console.log(typeof(dstcol))
-        if (typeof(dstcol) === String)
+        if (typeof(dstcol) === "string")
         {
             console.log("here");
             await py.runPythonAsync(`result = oto_unique(src, dstcol)`);
