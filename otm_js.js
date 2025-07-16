@@ -36,7 +36,7 @@ async function otm_load() {
             if (check_Col(dstcol.selectedOptions[0].text, Object.keys(srctable)))
             {
                 if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-                    await py_Start(srctable, dst.selectedOptions[0], check_Col(dsttable, dstcol.selectedOptions[0].text));
+                    await py_Start(srctable, dst.selectedOptions[0], rearange_Cols(dsttable, dstcol.selectedOptions[0].text));
                 else
                     throw "columns must be Texte type";
             }
