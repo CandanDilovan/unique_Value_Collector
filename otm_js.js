@@ -33,7 +33,7 @@ async function otm_load() {
             let srctable = await grist.docApi.fetchTable(src.selectedOptions[0].value);
             let dsttable = await grist.docApi.fetchTable(dst.selectedOptions[0].value);
         
-            if (check_Col(dstcol.selectedOptions[0].text, srctable))
+            if (check_Col(dstcol.selectedOptions[0].text, Object.keys(srctable)))
             {
                 if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
                     await py_Start(srctable, dst.selectedOptions[0], check_Col(dsttable, dstcol.selectedOptions[0].text));
@@ -68,8 +68,6 @@ function rearange_Cols(dsttable, dstcol)
 
 function check_Col(dst, src)
 {
-    console.log(src);
-    console.log(dst);
     for (let x = 0; x < src.lenght; x++)
     {
         if (dst === src[x])
