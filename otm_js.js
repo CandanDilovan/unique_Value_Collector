@@ -70,10 +70,10 @@ function check_Col(dst, src)
 {
     console.log(src);
     console.log(dst);
-    for (let x = 0; x < src.lenght; x++)
+    for (const col of src)
     {
-        console.log(src[x])
-        if (dst === src[x])
+        console.log(col)
+        if (dst === col)
             return true;
     }
     return false;
