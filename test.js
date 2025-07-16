@@ -47,7 +47,7 @@ async function py_Start(src, dst, dstcol)
     }
 }
 
-async function addto_Grist_mult(records, dst, dstcol) 
+async function addto_Grist_one(records, dst, dstcol) 
 {
     for (let x = 0; x < records.length; x++) 
     {
@@ -73,7 +73,7 @@ async function addto_Grist_mult(records, dst, dstcol)
 }
 
 
-async function addto_Grist_one(records, dst, dstcol) 
+async function addto_Grist_mult(records, dst, dstcol) 
 {
     for (let x = 0; x < records.length; x++) 
     {
