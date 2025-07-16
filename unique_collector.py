@@ -20,7 +20,7 @@ def otm_unique(src, dstcol):
 
 
 def add_Row(lst, pos, df):
-    new_lst = set()
+    new_lst = []
     for str in lst:
-        new_lst.add(df[str][pos])
+        new_lst.append(df[str][pos])
     return new_lst
