@@ -72,6 +72,7 @@ function check_Col(dst, src)
     console.log(dst);
     for (let x = 0; x < src.lenght; x++)
     {
+        console.log(src[x])
         if (dst === src[x])
             return true;
     }
