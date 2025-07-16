@@ -68,6 +68,8 @@ function rearange_Cols(dsttable, dstcol)
 
 function check_Col(dst, src)
 {
+    console.log(src);
+    console.log(dst);
     for (let x = 0; x < src.lenght; x++)
     {
         if (dst === src[x])
