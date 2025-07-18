@@ -58,7 +58,6 @@ async function otm_load() {
 function rearange_Cols(dsttable, dstcol)
 {
     let new_lst = [dstcol];
-    console.log("dsttable", dsttable)
     for (let x = 0; x < dsttable.lenght; x++)
     {
         if (dsttable[x] !== dstcol)
@@ -69,8 +68,6 @@ function rearange_Cols(dsttable, dstcol)
 
 function check_Col(dst, src)
 {
-    console.log(src);
-    console.log(dst);
     for (const col of src)
     {
         console.log(col)
