@@ -13,11 +13,12 @@ def otm_unique(src, dstcol):
     unique_lst = new_Dict(dstcol)
     for y in range(len(dstcol)):
         for x in range(len(df[dstcol[y]])):
-            if df[dstcol[y]][x] not in unique_lst:
+            if df[dstcol[y]][x] not in unique_lst[dstcol[y]]:
                 unique_lst[dstcol[y]].append(df[dstcol[y]][x])
     print(unique_lst)
     new_df = pd.DataFrame.from_dict(unique_lst)
     return new_df
+
 
 def new_Dict(dstcol):
     Dict = dict()
