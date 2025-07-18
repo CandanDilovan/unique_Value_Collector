@@ -57,7 +57,7 @@ async function otm_load() {
 
 function rearange_Cols(dsttable, dstcol)
 {
-    new_lst = [dstcol];
+    let new_lst = [dstcol];
     console.log("dsttable", dsttable)
     for (let x = 0; x < dsttable.lenght; x++)
     {

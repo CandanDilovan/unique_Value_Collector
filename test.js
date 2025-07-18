@@ -20,12 +20,12 @@ async function py_Start(src, dst, dstcol)
         py_code = await response.text();
         await py.runPythonAsync(py_code);
         
+        console.log("source", source);
         py.globals.set("src", py.toPy(src));
         py.globals.set("dstcol", py.toPy(dstcol));
         console.log(typeof(dstcol))
         if (typeof(dstcol) === "string")
         {
-            console.log("here");
             await py.runPythonAsync(`result = oto_unique(src, dstcol)`);
             
             const records_json = py.runPython(`result.to_json(orient="records")`);
