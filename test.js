@@ -20,7 +20,7 @@ async function py_Start(src, dst, dstcol)
         py_code = await response.text();
         await py.runPythonAsync(py_code);
         
-        console.log("source", source);
+        console.log("source", src);
         py.globals.set("src", py.toPy(src));
         py.globals.set("dstcol", py.toPy(dstcol));
         console.log(typeof(dstcol))
