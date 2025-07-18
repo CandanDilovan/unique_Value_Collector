@@ -12,10 +12,11 @@ def otm_unique(src, dstcol):
     df = pd.DataFrame(src)
     unique_lst = set()
     new_df = pd.DataFrame(columns=dstcol)
-    for x in range(len(df[dstcol[0]])):
-        if df[dstcol[0]][x] not in unique_lst:
-            unique_lst.add(df[dstcol[0]][x])
-            new_df.loc[len(new_df)] = add_Row(dstcol, x, df)
+    for y in range(len(dstcol)):
+        for x in range(len(df[dstcol[y]])):
+            if df[dstcol[y]][x] not in unique_lst:
+                unique_lst.add(df[dstcol[y]][x])
+                new_df.loc[len(new_df)] = add_Row(dstcol, x, df)
     return new_df
 
 
