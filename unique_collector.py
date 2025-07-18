@@ -14,7 +14,7 @@ def otm_unique(src, dstcol):
     for x in range(len(df[dstcol[0]])):
         if df[dstcol[0]][x] not in unique_lst:
             for y in range(len(dstcol)):
-                unique_lst[dstcol[y]] = df[dstcol[y]][x]
+                unique_lst[dstcol[y]] += df[dstcol[y]][x]
     print(unique_lst)
     new_df = pd.DataFrame.from_dict(unique_lst)
     return new_df
