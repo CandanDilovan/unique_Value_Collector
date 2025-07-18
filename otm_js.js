@@ -63,7 +63,7 @@ function rearange_Cols(dsttable, dstcol)
     {
         console.log("here")
         if (col !== dstcol)
-            new_lst.append(col);   
+            new_lst.push(col);   
     }
     return new_lst
 }
