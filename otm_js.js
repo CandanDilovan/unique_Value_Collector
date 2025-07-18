@@ -36,7 +36,7 @@ async function otm_load() {
             if (check_Col(dstcol.selectedOptions[0].text, Object.keys(srctable)))
             {
                 if (is_Text(srctable[dstcol.selectedOptions[0].text][0]))
-                    await py_Start(srctable, dst.selectedOptions[0], rearange_Cols(dsttable, dstcol.selectedOptions[0].text));
+                    await py_Start(srctable, dst.selectedOptions[0], rearange_Cols(Object.keys(dsttable), dstcol.selectedOptions[0].text));
                 else
                     throw "columns must be Texte type";
             }
@@ -58,8 +58,10 @@ async function otm_load() {
 function rearange_Cols(dsttable, dstcol)
 {
     let new_lst = [dstcol];
+    console.log(dsttable.lenght)
     for (let x = 0; x < dsttable.lenght; x++)
     {
+        console.log("here")
         if (dsttable[x] !== dstcol)
             new_lst.appendChild(dsttable[x]);   
     }
