@@ -37,6 +37,7 @@ async function py_Start(src, dst, dstcol)
             await py.runPythonAsync("result = otm_unique(src, dstcol)")
             const records_json = py.runPython("result.to_json(orient='records')");
             const records = JSON.parse(records_json);
+            console.log(records);
             addto_Grist_mult(records, dst, dstcol);
         }
 
