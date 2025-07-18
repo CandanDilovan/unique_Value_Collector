@@ -86,7 +86,6 @@ async function addto_Grist_mult(records, dst, dstcol)
         for (let y = 0; y < dstcol.length; y++)
         {
             if (dsttable[dstcol[y]][x] !== records[x][dstcol[y]])
-                console.log(dsttable[dstcol][x])
             {
                 if (dsttable[dstcol[y]][x])
                     await grist.docApi.applyUserActions([["UpdateRecord", dst.text, id, records[x]]]);
