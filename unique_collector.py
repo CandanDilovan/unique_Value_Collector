@@ -23,5 +23,5 @@ def otm_unique(src, dstcol):
 def new_Dict(dstcol):
     Dict = dict()
     for col in dstcol:
-        Dict[col] = set()
+        Dict[col] = []
     return Dict
