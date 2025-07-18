@@ -15,7 +15,7 @@ def otm_unique(src, dstcol):
         if df[dstcol[0]][x] not in unique_lst:
             for y in range(len(dstcol)):
                 unique_lst[dstcol[y]] = df[dstcol[y]][x]
-    new_df = pd.DataFrame(unique_lst)
+    new_df = pd.DataFrame([unique_lst])
     return new_df
 
 
