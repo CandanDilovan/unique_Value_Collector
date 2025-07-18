@@ -59,11 +59,11 @@ function rearange_Cols(dsttable, dstcol)
 {
     let new_lst = [dstcol];
     console.log(dsttable.lenght)
-    for (let x = 0; x < dsttable.lenght; x++)
+    for (const col of dsttable)
     {
         console.log("here")
-        if (dsttable[x] !== dstcol)
-            new_lst.appendChild(dsttable[x]);   
+        if (col !== dstcol)
+            new_lst.appendChild(col);   
     }
     return new_lst
 }
