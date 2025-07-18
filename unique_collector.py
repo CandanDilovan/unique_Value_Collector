@@ -10,18 +10,17 @@ def oto_unique(src, dstcol):
 
 def otm_unique(src, dstcol):
     df = pd.DataFrame(src)
-    unique_lst = set()
+    unique_lst = new_Dict(dstcol)
     new_df = pd.DataFrame(columns=dstcol)
     for y in range(len(dstcol)):
         for x in range(len(df[dstcol[y]])):
             if df[dstcol[y]][x] not in unique_lst:
-                unique_lst.add(df[dstcol[y]][x])
-                new_df.loc[len(new_df)] = add_Row(dstcol[y], x, df)
+                unique_lst[dstcol[y]] = df[dstcol[y]][x]
     return new_df
 
 
-def add_Row(lst, pos, df):
-    new_lst = []
-    for str in lst:
-        new_lst.append(df[str][pos])
-    return new_lst
+def new_Dict(dstcol):
+    Dict = dict()
+    for col in dstcol:
+        Dict[col] = set()
+    return Dict
