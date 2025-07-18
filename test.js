@@ -80,6 +80,7 @@ async function addto_Grist_mult(records, dst, dstcol)
         let dsttable = await grist.docApi.fetchTable(dst.value);
 
         let id = dsttable['id'][x];
+        console.log(dstcol);
         for (let y = 0; y < dstcol.length; y++)
         {
             if (dsttable[dstcol[y]][x] !== records[x][dstcol[y]])
