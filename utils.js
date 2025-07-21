@@ -150,7 +150,7 @@ function showErrorPopup(error) {
   const message = document.getElementById('error-message');
   const closeBtn = document.getElementById('close-error');
 
-  message.textContent = error.message || "An unexpected error occurred.";
+  message.textContent = error || "An unexpected error occurred.";
   popup.classList.remove('hidden');
 
   closeBtn.onclick = () => {
