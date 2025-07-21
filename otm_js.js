@@ -46,7 +46,7 @@ async function otm_load() {
         catch (error)
         {
             console.error(error)
-            showErrorPopup(error.message)
+            showErrorPopup(error)
         }
         finally
         {
