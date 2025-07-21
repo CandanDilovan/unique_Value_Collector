@@ -44,7 +44,7 @@ async function oto_load() {
         catch (error)
         {
             console.error(error)
-            showError(error.message)
+            showErrorPopup(error)
         }
         finally
         {

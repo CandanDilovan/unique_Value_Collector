@@ -145,3 +145,21 @@ async function col_Selector(event)
     }
 }
 
+function showErrorPopup(error) {
+  const popup = document.getElementById('error-popup');
+  const message = document.getElementById('error-message');
+  const closeBtn = document.getElementById('close-error');
+
+  message.textContent = error.message || "An unexpected error occurred.";
+  popup.classList.remove('hidden');
+
+  closeBtn.onclick = () => {
+    popup.classList.add('hidden');
+  };
+
+  window.onclick = (event) => {
+    if (event.target === popup) {
+      popup.classList.add('hidden');
+    }
+  };
+}
