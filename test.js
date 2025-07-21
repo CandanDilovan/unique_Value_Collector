@@ -83,7 +83,7 @@ async function addto_Grist_mult(records, dst, dstcol)
 
         let id = dsttable['id'][x];
         console.log(dstcol);
-        for (let y = 0; y < dstcol[y].length; y++)
+        for (let y = 0; y < dstcol.length; y++)
         {
             if (dsttable[dstcol[y]][x] !== records[x][dstcol[y]])
             {
