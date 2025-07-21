@@ -90,13 +90,13 @@ async function addto_Grist_mult(records, dst, dstcol)
                 else
                     await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
             }
+            const stepProgress = 0 + ((x + 1) / records.length) * 20;
+            updateProgress(
+                Math.round(stepProgress), 
+                "Ajout des enregistrements...", 
+                `${x + 1}/${records.length} enregistrements ajoutés`
+            );
         }
-        const stepProgress = 0 + ((x + 1) / records.length) * 20;
-        updateProgress(
-            Math.round(stepProgress), 
-            "Ajout des enregistrements...", 
-            `${x + 1}/${records.length} enregistrements ajoutés`
-        );
     }
     showSuccess(records.length);
 }
