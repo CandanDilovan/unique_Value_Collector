@@ -40,6 +40,8 @@ async function oto_load() {
                 else
                     throw "columns must be Texte type";
             }
+            else
+                throw "columns do not match"
         }
         catch (error)
         {
