@@ -77,10 +77,11 @@ async function addto_Grist_one(records, dst, dstcol)
 
 async function addto_Grist_mult(records, dst, dstcol) 
 {
+    console.log(records);
     let dsttable = await grist.docApi.fetchTable(dst.value);
     for (let x = 0; x < records.length; x++) 
     {
-
+        console.log(records[x])
         let id = dsttable['id'][x];
         for (let y = 0; y < dstcol.length; y++)
         {
