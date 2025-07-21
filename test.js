@@ -54,6 +54,7 @@ async function addto_Grist_one(records, dst, dstcol)
     let dsttable = await grist.docApi.fetchTable(dst.value);
     for (let x = 0; x < records.length; x++) 
     {
+
         let id = dsttable['id'][x]
         if (dsttable[dstcol][x] !== records[x][dstcol])
         {
@@ -79,13 +80,17 @@ async function addto_Grist_mult(records, dst, dstcol)
     let dsttable = await grist.docApi.fetchTable(dst.value);
     for (let x = 0; x < records.length; x++) 
     {
+
         let id = dsttable['id'][x];
-        if (dsttable[dstcol[0]][x] !== records[x][dstcol[0]])
+        for (let y = 0; y < dstcol.length; y++)
         {
-            if (dsttable[dstcol[0]][x])
-                await grist.docApi.applyUserActions([["UpdateRecord", dst.text, id, records[x]]]);
-            else
-                await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
+            if (dsttable[dstcol[y]][x] !== records[x][dstcol[y]])
+            {
+                if (dsttable[dstcol[y]][x])
+                    await grist.docApi.applyUserActions([["UpdateRecord", dst.text, id, records[x]]]);
+                else
+                    await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
+            }
         }
         const stepProgress = 0 + ((x + 1) / records.length) * 20;
         updateProgress(
