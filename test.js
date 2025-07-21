@@ -78,11 +78,12 @@ async function addto_Grist_one(records, dst, dstcol)
 async function addto_Grist_mult(records, dst, dstcol) 
 {
     let dsttable = await grist.docApi.fetchTable(dst.value);
-    for (let y = 0; y < dstcol.length; y++)
+    for (let x = 0; x < records.length; x++) 
     {
-        for (let x = 0; x < records.length; x++) 
+
+        let id = dsttable['id'][x];
+        for (let y = 0; y < dstcol.length; y++)
         {
-            let id = dsttable['id'][x];
             if (dsttable[dstcol[y]][x] !== records[x][dstcol[y]])
             {
                 if (dsttable[dstcol[y]][x])
@@ -90,13 +91,13 @@ async function addto_Grist_mult(records, dst, dstcol)
                 else
                     await grist.docApi.applyUserActions([["AddRecord", dst.text, null, records[x]]]);
             }
-            const stepProgress = 0 + ((x + 1) / records.length) * 20;
-            updateProgress(
-                Math.round(stepProgress), 
-                "Ajout des enregistrements...", 
-                `${x + 1}/${records.length} enregistrements ajoutés`
-            );
         }
+        const stepProgress = 0 + ((x + 1) / records.length) * 20;
+        updateProgress(
+            Math.round(stepProgress), 
+            "Ajout des enregistrements...", 
+            `${x + 1}/${records.length} enregistrements ajoutés`
+        );
     }
     showSuccess(records.length);
 }
