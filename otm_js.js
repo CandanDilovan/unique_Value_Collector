@@ -62,7 +62,7 @@ function rearange_Cols(dsttable, dstcol)
     for (const col of dsttable)
     {
         console.log("here")
-        if (col !== dstcol && col !== "id" && col !== "manualSort")
+        if (col !== dstcol && col !== "id" && col !== "manualSort" && col != "group")
             new_lst.push(col);   
     }
     return new_lst
