@@ -15,7 +15,7 @@ document.getElementById("oto_button").addEventListener("click", async() =>{
     }
     catch(err){
         console.error(err);
-        showErrorPopup(err.message)
+        showErrorPopup(err)
     }
 });
 
@@ -35,6 +35,6 @@ document.getElementById("otm_button").addEventListener("click", async() =>{
     }
     catch(err){
         console.error(err);
-        showErrorPopup(err.message)
+        showErrorPopup(err)
     }
 });
